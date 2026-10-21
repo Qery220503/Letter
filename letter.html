@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#fff0f4" />
+  <title>Para ti ♡</title>
+  <style>
+    :root {
+      --rose: #d94f78;
+      --deep: #7f2949;
+      --ink: #492b39;
+      --paper: rgba(255,255,255,.82);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      color: var(--ink);
+      font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(255,255,255,.95), transparent 34%),
+        radial-gradient(ellipse at 90% 25%, rgba(255,190,207,.7), transparent 35%),
+        linear-gradient(145deg, #fff0f4 0%, #ffe0e9 48%, #f9d7ed 100%);
+      overflow-x: hidden;
+    }
+    .nombre {
+      text-decoration: line-through;
+    }
+    .glow {
+      position: fixed; width: 240px; height: 240px; border-radius: 50%;
+      filter: blur(60px); opacity: .35; pointer-events: none; z-index: 0;
+      background: #ff8fb1;
+    }
+    .glow.one { top: 45%; left: -120px; }
+    .glow.two { top: 5%; right: -130px; background: #c8a3ff; }
+    .hearts { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+    .heart {
+      position: absolute; bottom: -40px; color: rgba(217,79,120,.45);
+      animation: floatUp linear infinite; user-select: none;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      12% { opacity: .75; }
+      85% { opacity: .6; }
+      to { transform: translateY(-115vh) rotate(28deg); opacity: 0; }
+    }
+    main {
+      position: relative; z-index: 1; min-height: 100svh;
+      display: grid; place-items: center; padding: 28px 16px;
+    }
+    .card {
+      width: min(100%, 680px); text-align: center; padding: clamp(25px, 6vw, 54px);
+      border: 1px solid rgba(255,255,255,.85); border-radius: 30px;
+      background: var(--paper); backdrop-filter: blur(14px);
+      box-shadow: 0 24px 80px rgba(126,41,73,.13);
+      animation: arrive .9s ease both;
+    }
+    @keyframes arrive { from { opacity: 0; transform: translateY(18px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+      border-radius: 999px; background: #fff0f5; color: var(--deep);
+      font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 700;
+    }
+    .big-heart { font-size: clamp(3.5rem, 12vw, 5.8rem); line-height: 1.15; margin: 22px 0 12px; animation: heartbeat 1.8s ease-in-out infinite; filter: drop-shadow(0 8px 16px rgba(217,79,120,.2)); }
+    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 10%, 30% { transform: scale(1.08); } 20%, 40% { transform: scale(1); } }
+    h1 { font-size: clamp(2rem, 7vw, 3.5rem); line-height: 1.08; letter-spacing: -.045em; margin: 0 auto 18px; color: var(--deep); max-width: 560px; }
+    .intro { font-size: clamp(1rem, 3vw, 1.17rem); line-height: 1.8; max-width: 490px; margin: 0 auto; color: #684657; }
+    .divider { display: flex; align-items: center; gap: 12px; margin: 28px auto; max-width: 300px; color: #d77b99; }
+    .divider::before, .divider::after { content: ""; height: 1px; flex: 1; background: #efc3d1; }
+    .letter {
+      text-align: left; background: rgba(255,246,249,.88); border: 1px solid #f7d8e2;
+      border-radius: 20px; padding: clamp(19px, 4vw, 28px); line-height: 1.9;
+      font-size: 1.02rem; color: #583747;
+    }
+    .letter p { margin: 0 0 14px; }
+    .letter p:last-child { margin-bottom: 0; }
+    .signature { text-align: right; margin-top: 18px; color: var(--deep); font-weight: 750; font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 27px; }
+    button {
+      border: 0; border-radius: 999px; padding: 13px 20px; font: inherit; font-weight: 700;
+      cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    button:hover { transform: translateY(-2px); }
+    button:focus-visible { outline: 3px solid #9a3e62; outline-offset: 4px; }
+    .primary { color: white; background: linear-gradient(135deg, #df5c83, #b83d6a); box-shadow: 0 8px 20px rgba(184,61,106,.22); }
+    .secondary { color: var(--deep); background: #fff0f5; border: 1px solid #f3c6d5; }
+    .extra { display: none; margin: 20px auto 0; padding: 17px; max-width: 440px; border-radius: 16px; background: #fff4f7; color: var(--deep); line-height: 1.7; }
+    .extra.show { display: block; animation: arrive .4s ease both; }
+    footer { margin-top: 28px; font-size: .82rem; color: #986b7d; }
+    .sparkle { position: absolute; color: #d94f78; opacity: .55; animation: twinkle 2.8s ease-in-out infinite; }
+    @keyframes twinkle { 0%,100% { opacity: .25; transform: scale(.8); } 50% { opacity: .8; transform: scale(1.2); } }
+    @media (max-width: 420px) {
+      main { padding: 16px 12px; }
+      .card { border-radius: 24px; }
+      .letter { font-size: .97rem; }
+      .actions { flex-direction: column; }
+      .actions button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow one"></div><div class="glow two"></div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <main>
+    <article class="card">
+      <span class="eyebrow">♡ Una cosita para ti ♡</span>
+      <div class="big-heart" aria-hidden="true">💗</div>
+      <h1>Buenos días, mi persona favorita</h1>
+      <p class="intro">Ojalá esta sea una de las primeras cosas que encuentres al despertar. Hoy quería decirte algo...</p>
+      <div class="divider" aria-hidden="true">✧</div>
+      <section class="letter" aria-label="Mensaje de amor">
+        <p>Espero que hayas descansado bien.</p>
+        <p>Quiero que empieces tu día sabiendo que hay alguien que sonríe con solo pensar en ti, que se alegra de tenerte en su vida y que desea de corazón que hoy te pasen cosas bonitas.</p>
+        <p>No necesitas tener un día perfecto ni poder con todo. Si hoy se pone difícil, recuerda que eres una persona increíble y que mereces paciencia, cariño y muchas razones para mostrar tu increíble sonrisa.</p>
+        <p>Si pudiera elegir dónde estar en este momento, elegiría estar a tu lado, darte un abrazo largo, llenarte de tus brillitos y verte sonreír antes de que empiece tu día.</p>
+        <p>Gracias por existir y por hacer que mis días tengan algo especial. No sé qué traerá hoy, pero me gusta saber que, de alguna manera, puedo compartir una parte de mi vida contigo.</p>
+        <p>Así que despierta tranquila, no olvides tomar agua, sonríe y recuerda que alguien te quiere muchísimo. Espero poder hacerte feliz hoy, aunque sea un poquito. 💕</p>
+        <div class="signature">Con todo mi cariño, <span class="nombre">Claudio</span> Diego ❤️</div>
+      </section>
+      <div class="actions">
+        <button class="primary" id="surpriseBtn" type="button">Tengo otra cosita para ti ✨</button>
+      </div>
+      <div class="extra" id="extra" aria-live="polite">Si pudiera pedir un deseo para esta mañana, sería darte un abrazo tan largo que te acompañe incluso cuando no esté ahí. Te quiero muchísimo. 🫶</div>
+    </article>
+  </main>
+  <script>
+    const hearts = document.getElementById('hearts');
+    const symbols = ['♡', '♥', '✧', '💕'];
+    for (let i = 0; i < 22; i++) {
+      const item = document.createElement('span');
+      item.className = 'heart';
+      item.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      item.style.left = Math.random() * 100 + '%';
+      item.style.fontSize = (14 + Math.random() * 20) + 'px';
+      item.style.animationDuration = (9 + Math.random() * 13) + 's';
+      item.style.animationDelay = (-Math.random() * 18) + 's';
+      hearts.appendChild(item);
+    }
+    document.getElementById('surpriseBtn').addEventListener('click', () => {
+      const extra = document.getElementById('extra');
+      extra.classList.toggle('show');
+      document.getElementById('surpriseBtn').textContent =
+        extra.classList.contains('show') ? 'Volver a leerlo luego 💗' : 'Tengo otra cosita para ti ✨';
+    });
+    document.getElementById('copyBtn').addEventListener('click', async () => {
+      const text = `Buenos días, mi persona favorita 💗\n\nAmor, espero que hayas descansado bonito. Quiero que empieces tu día sabiendo que hay alguien que sonríe con solo pensar en ti, que se alegra de tenerte en su vida y que desea de corazón que hoy te pasen cosas lindas.\n\nNo necesitas tener un día perfecto ni poder con todo. Si hoy se pone difícil, recuerda que eres una persona increíble y que mereces paciencia, cariño y muchas razones para sonreír.\n\nSi pudiera elegir dónde estar en este momento, elegiría estar a tu lado, darte un abrazo largo, llenarte de besitos y verte sonreír antes de que empiece tu día.\n\nGracias por existir y por hacer que mis días tengan algo especial. Despierta despacito y recuerda que alguien te quiere muchísimo. 💕`;
+      const button = document.getElementById('copyBtn');
+      try {
+        await navigator.clipboard.writeText(text);
+        button.textContent = '¡Copiado con amor! ✓';
+      } catch {
+        const area = document.createElement('textarea');
+        area.value = text; document.body.appendChild(area); area.select();
+        document.execCommand('copy'); area.remove();
+        button.textContent = '¡Copiado con amor! ✓';
+      }
+      setTimeout(() => button.textContent = 'Copiar mensajito ♡', 2200);
+    });
+  </script>
+</body>
+</html>
